@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "10654150328",
+    "firebase_url": "https://read-pdf-649e3-default-rtdb.firebaseio.com",
+    "project_id": "read-pdf-649e3",
+    "storage_bucket": "read-pdf-649e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10654150328:android:8ea802f3eba6fe51fc0e4d",
+        "android_client_info": {
+          "package_name": "com.example.read_pdf"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMMAMIi27RwbLsjI5f9DwNAgDWLaOp9HU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
