@@ -1,0 +1,244 @@
+{
+	"tldrawFileFormatVersion": 1,
+	"schema": {
+		"schemaVersion": 2,
+		"sequences": {
+			"com.tldraw.store": 4,
+			"com.tldraw.asset": 1,
+			"com.tldraw.camera": 1,
+			"com.tldraw.document": 2,
+			"com.tldraw.instance": 25,
+			"com.tldraw.instance_page_state": 5,
+			"com.tldraw.page": 1,
+			"com.tldraw.instance_presence": 5,
+			"com.tldraw.pointer": 1,
+			"com.tldraw.shape": 4,
+			"com.tldraw.asset.bookmark": 2,
+			"com.tldraw.asset.image": 5,
+			"com.tldraw.asset.video": 5,
+			"com.tldraw.shape.group": 0,
+			"com.tldraw.shape.text": 2,
+			"com.tldraw.shape.bookmark": 2,
+			"com.tldraw.shape.draw": 2,
+			"com.tldraw.shape.geo": 9,
+			"com.tldraw.shape.note": 7,
+			"com.tldraw.shape.line": 5,
+			"com.tldraw.shape.frame": 0,
+			"com.tldraw.shape.arrow": 5,
+			"com.tldraw.shape.highlight": 1,
+			"com.tldraw.shape.embed": 4,
+			"com.tldraw.shape.image": 4,
+			"com.tldraw.shape.video": 2,
+			"com.tldraw.binding.arrow": 0
+		}
+	},
+	"records": [
+		{
+			"gridSize": 10,
+			"name": "",
+			"meta": {},
+			"id": "document:document",
+			"typeName": "document"
+		},
+		{
+			"id": "pointer:pointer",
+			"typeName": "pointer",
+			"x": 296.7096874837515,
+			"y": 132.38170454622872,
+			"lastActivityTimestamp": 1722251063412,
+			"meta": {}
+		},
+		{
+			"meta": {},
+			"id": "page:page",
+			"name": "Page 1",
+			"index": "a1",
+			"typeName": "page"
+		},
+		{
+			"followingUserId": null,
+			"opacityForNextShape": 1,
+			"stylesForNextShape": {
+				"tldraw:color": "black"
+			},
+			"brush": null,
+			"scribbles": [],
+			"cursor": {
+				"type": "default",
+				"rotation": 0
+			},
+			"isFocusMode": false,
+			"exportBackground": true,
+			"isDebugMode": false,
+			"isToolLocked": false,
+			"screenBounds": {
+				"x": 0,
+				"y": 0,
+				"w": 1063.1944580078125,
+				"h": 631.25
+			},
+			"insets": [
+				false,
+				false,
+				true,
+				false
+			],
+			"zoomBrush": null,
+			"isGridMode": false,
+			"isPenMode": false,
+			"chatMessage": "",
+			"isChatting": false,
+			"highlightedUserIds": [],
+			"isFocused": true,
+			"devicePixelRatio": 1.440000057220459,
+			"isCoarsePointer": false,
+			"isHoveringCanvas": true,
+			"openMenus": [],
+			"isChangingStyle": false,
+			"isReadonly": false,
+			"meta": {},
+			"duplicateProps": null,
+			"id": "instance:instance",
+			"currentPageId": "page:page",
+			"typeName": "instance"
+		},
+		{
+			"editingShapeId": "shape:Ple-VwEXAQd9WSPnCcIkQ",
+			"croppingShapeId": null,
+			"selectedShapeIds": [
+				"shape:Ple-VwEXAQd9WSPnCcIkQ"
+			],
+			"hoveredShapeId": "shape:Ple-VwEXAQd9WSPnCcIkQ",
+			"erasingShapeIds": [],
+			"hintingShapeIds": [],
+			"focusedGroupId": null,
+			"meta": {},
+			"id": "instance_page_state:page:page",
+			"pageId": "page:page",
+			"typeName": "instance_page_state"
+		},
+		{
+			"x": 49.97847189267546,
+			"y": -9.193822502578396,
+			"z": 0.7475560276080477,
+			"meta": {},
+			"id": "camera:page:page",
+			"typeName": "camera"
+		},
+		{
+			"x": 249.08055240911426,
+			"y": 57.47217234845584,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:4CtXKDel92RqaGI8u9zpt",
+			"type": "text",
+			"props": {
+				"color": "red",
+				"size": "m",
+				"w": 89.29209899902344,
+				"text": "models",
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1.715912744653953
+			},
+			"parentId": "page:page",
+			"index": "a1",
+			"typeName": "shape"
+		},
+		{
+			"x": 249.54971313476562,
+			"y": 153.7543487548828,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:rggbSoD9FADKuNXL7vpNx",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 956.8684692382812,
+				"text": "categories\n  |\n  ├── categoryId1\n  |     ├── name: \"Fantastika\"\n  |     ├── description: \"Fantastika janridagi kitoblar.\"\n  |     └── imageUrl: \"https://firebasestorage.googleapis.com/...\"  // Kategoriya tasviri\n  |\n  ├── categoryId2\n  |     ├── name: \"Ilmiy\"\n  |     ├── description: \"Ilmiy kitoblar.\"\n  |     └── imageUrl: \"https://firebasestorage.googleapis.com/...\"\n  |\n  └── ...",
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": false,
+				"scale": 0.4921512469558169
+			},
+			"parentId": "page:page",
+			"index": "a2",
+			"typeName": "shape"
+		},
+		{
+			"x": 254.13955160311275,
+			"y": 450.5181719582347,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:-V3fqH68_F4JAsDnqI7a7",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 850.7269897460938,
+				"text": "books\n  |\n  ├── bookId1\n  |     ├── title: \"Kitob nomi\"\n  |     ├── author: \"Muallif nomi\"\n  |     ├── description: \"Kitob tavsifi\"\n  |     ├── pdfUrl: \"https://firebasestorage.googleapis.com/...\"\n  |     ├── coverImageUrl: \"https://firebasestorage.googleapis.com/...\"\n  |     ├── publishedDate: \"2024-07-29\"\n  |     ├── genre: \"Fantastika\"\n  |     └── categoryId: \"categoryId1\"  // Kategoriya IDsi\n  |\n  ├── bookId2\n  |     ├── title: \"Yana bir kitob nomi\"\n  |     ├── author: \"Muallif nomi\"\n  |     ├── description: \"Kitob tavsifi\"\n  |     ├── pdfUrl: \"https://firebasestorage.googleapis.com/...\"\n  |     ├── coverImageUrl: \"https://firebasestorage.googleapis.com/...\"\n  |     ├── publishedDate: \"2024-07-30\"\n  |     ├── genre: \"Ilmiy\"\n  |     └── categoryId: \"categoryId2\"  // Kategoriya IDsi\n  |\n  └── ...",
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 0.5174861757996144
+			},
+			"parentId": "page:page",
+			"index": "a3",
+			"typeName": "shape"
+		},
+		{
+			"x": 253.78914498398717,
+			"y": 396.5672129825668,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:nflOx0F_izUF5_24Ucj5e",
+			"type": "text",
+			"props": {
+				"color": "blue",
+				"size": "m",
+				"w": 156.46875,
+				"text": "Books model",
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a4",
+			"typeName": "shape"
+		},
+		{
+			"x": 247.83803049944333,
+			"y": 115.82019888763352,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:Ple-VwEXAQd9WSPnCcIkQ",
+			"type": "text",
+			"props": {
+				"color": "blue",
+				"size": "m",
+				"w": 217.52560424804688,
+				"text": "Categories model",
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1
+			},
+			"parentId": "page:page",
+			"index": "a5",
+			"typeName": "shape"
+		}
+	]
+}
