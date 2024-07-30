@@ -5,7 +5,7 @@ class BooksModel {
   final String description;
   final String pdfUrl;
   final String coverImageUrl;
-  final DateTime publishedDate;
+  final String publishedDate;
   final String genre;
   final String categoryId;
 
@@ -21,7 +21,6 @@ class BooksModel {
     required this.categoryId,
   });
 
-  // JSON dan modelga o'tkazish
   factory BooksModel.fromJson(Map<String, dynamic> json) {
     return BooksModel(
       id: json['id'] ?? '',
@@ -30,14 +29,12 @@ class BooksModel {
       description: json['description'] ?? '',
       pdfUrl: json['pdfUrl'] ?? '',
       coverImageUrl: json['coverImageUrl'] ?? '',
-      publishedDate:
-          DateTime.parse(json['publishedDate'] ?? DateTime.now().toString()),
+      publishedDate: json['publishedDate'] ?? '',
       genre: json['genre'] ?? '',
       categoryId: json['categoryId'] ?? '',
     );
   }
 
-  // Modelni JSON formatiga o'tkazish
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -46,10 +43,9 @@ class BooksModel {
       'description': description,
       'pdfUrl': pdfUrl,
       'coverImageUrl': coverImageUrl,
-      'publishedDate': publishedDate.toIso8601String(),
+      'publishedDate': publishedDate,
       'genre': genre,
       'categoryId': categoryId,
     };
   }
-
 }

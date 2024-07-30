@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:io';
-
+import 'dart:io' as io;
+import 'package:flutter/foundation.dart' as foundation;
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -17,22 +17,29 @@ class _AddBookScreenState extends State<AddBookScreen> {
   UploadTask? uploadTask;
 
   Future uploadfile() async {
-    final path = 'files/${pickedFiles!.name}';
-    final file = File(pickedFiles!.path!);
+    try {
+      final path = 'files/${pickedFiles!.name}';
+      final ref = FirebaseStorage.instance.ref().child(path);
 
-    final ref = FirebaseStorage.instance.ref().child(path);
-    setState(() {
-      uploadTask = ref.putFile(file);
-    });
+      if (foundation.kIsWeb) {
+        final uploadTask = ref.putData(pickedFiles!.bytes!);
+        final snapshot = await uploadTask.whenComplete(() {});
+        final urlDownload = await snapshot.ref.getDownloadURL();
+        print(urlDownload);
+      } else {
+        final file = io.File(pickedFiles!.path!);
+        final uploadTask = ref.putFile(file);
+        final snapshot = await uploadTask.whenComplete(() {});
+        final urlDownload = await snapshot.ref.getDownloadURL();
+        print(urlDownload);
+      }
 
-    final snapshot = await uploadTask!.whenComplete(() {});
-
-    final urlDownload = await snapshot.ref.getDownloadURL();
-    print(urlDownload);
-
-    setState(() {
-      uploadTask = null;
-    });
+      setState(() {
+        uploadTask = null;
+      });
+    } catch (e) {
+      print("ERROR: $e");
+    }
   }
 
   Future selectFile() async {
@@ -42,11 +49,32 @@ class _AddBookScreenState extends State<AddBookScreen> {
     );
     if (result == null) return;
 
+    // print(result);
+
     setState(() {
       pickedFiles = result.files.first;
     });
 
-    print(pickedFiles);
+    // print(pickedFiles);
+  }
+
+  // double bytesToMB(List<int> bytes) {
+  //   int totalBytes = bytes.length;
+
+  //   double totalMB = totalBytes / (1024 * 1024);
+
+  //   return totalMB;
+  // }
+  double bytesToSize(List<int> bytes) {
+    int totalBytes = bytes.length;
+    double sizeInMB = totalBytes / (1024 * 1024);
+
+    if (sizeInMB < 1) {
+      double sizeInKB = totalBytes / 1024;
+      return sizeInKB; // KB
+    }
+
+    return sizeInMB; // MB
   }
 
   @override
@@ -58,10 +86,21 @@ class _AddBookScreenState extends State<AddBookScreen> {
       body: Center(
         child: Column(
           children: [
-            // if (pickedFiles != null)
-            //   Image.file(
-            //     File(pickedFiles!.path!),
-            //   ),
+            pickedFiles != null
+                ? Text(
+                    'File hajmi: ${bytesToSize(pickedFiles!.bytes!).toStringAsFixed(2)}',
+                    style: const TextStyle(fontSize: 18),
+                  )
+                : const Text("No selected file")
+            // Text(
+            //   'File Size: ${pickedFiles!.size} bytes',
+            //   style: const TextStyle(fontSize: 18),
+            // ),
+            // Optionally display the file type if needed
+            // Text(
+            //   'File Type: ${pickedFiles!.extension}',
+            //   style: const TextStyle(fontSize: 18),
+            // ),
           ],
         ),
       ),

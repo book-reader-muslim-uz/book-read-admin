@@ -1,8 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:read_pdf/firebase_options.dart';
-import 'package:read_pdf/views/screens/add_book_screen.dart';
-import 'package:read_pdf/views/screens/main_screen.dart';
+import 'package:read_pdf/views/screens/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainScreen(),
+         home: HomeScreen(),
     );
   }
 }
