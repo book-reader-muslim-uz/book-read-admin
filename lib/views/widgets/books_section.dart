@@ -36,7 +36,11 @@ class _TestColumnState extends State<BooksSection> {
             ),
             IconButton(
               onPressed: () {
-                Get.dialog(const AddBookDialog());
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AddBookDialog();
+                    });
               },
               icon: const Icon(
                 Icons.add,
@@ -52,8 +56,9 @@ class _TestColumnState extends State<BooksSection> {
               child: CircularProgressIndicator(),
             );
           } else if (controller.errorMessage.isNotEmpty) {
-            return Center(
-              child: Text(controller.errorMessage.value),
+            return const Center(
+              child: Text(
+                  "Mahsulotlar topilmadi, qo'shish uchun (+) tugamsini bosing"),
             );
           } else if (controller.books.isEmpty) {
             return const Center(
@@ -76,7 +81,7 @@ class _TestColumnState extends State<BooksSection> {
               scrollDirection: Axis.vertical,
               itemCount: controller.books.length,
               itemBuilder: (context, index) {
-                print((MediaQuery.of(context).size.width / 250).floor());
+                // print((MediaQuery.of(context).size.width / 250).floor());
                 final book = controller.books[index];
                 return BookItemWidget(book: book);
               },
