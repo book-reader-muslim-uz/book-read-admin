@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/book_form_controller.dart';
@@ -17,7 +18,11 @@ class CategoryFormField extends StatelessWidget {
             controller: controller.categoriesController,
             onChanged: (value) => controller.filterCategories(value),
             onTap: () => controller.isExpanded.value = true,
-            decoration: const InputDecoration(labelText: 'Select Genre'),
+            decoration: const InputDecoration(
+              suffixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(),
+              labelText: 'Select Genre',
+            ),
             validator: (value) =>
                 value!.isEmpty ? 'Please select a category' : null,
           ),
@@ -39,6 +44,7 @@ class CategoryFormField extends StatelessWidget {
               },
             ),
           ),
+          const Gap(10),
         ],
       ),
     );

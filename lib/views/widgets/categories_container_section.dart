@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/category_controller.dart';
+import '../../controllers/category_form_controller.dart';
 import '../../utils/app_theme.dart';
+import 'diolog_widgets/category_dialog_form.dart';
 
 class CategoriesContainerSection extends StatefulWidget {
   const CategoriesContainerSection({super.key});
@@ -17,6 +19,8 @@ class _CategoriesContainerSectionState
   @override
   Widget build(BuildContext context) {
     final CategoryController categoryController = Get.put(CategoryController());
+  final categoryFormController = Get.put(CategoryFormController());
+
 
     return Container(
       padding: const EdgeInsets.only(
@@ -43,7 +47,16 @@ class _CategoriesContainerSectionState
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return CategoryDialogForm(
+                        categoryFormController: categoryFormController,
+                      );
+                    },
+                  );
+                },
                 icon: const Icon(
                   Icons.add,
                   size: 25,
@@ -108,7 +121,10 @@ class _CategoriesContainerSectionState
                               color: AppColors.redColor.withOpacity(0.2),
                             ),
                             child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                // print(category.id);
+                                categoryController.deleteCategory(category.id);
+                              },
                               icon: const Icon(
                                 Icons.delete,
                                 size: 20,

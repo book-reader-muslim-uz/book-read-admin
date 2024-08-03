@@ -1,39 +1,3 @@
-// import 'package:get/get.dart';
-
-// import '../models/categories_model.dart';
-// import '../services/dio_category_service.dart';
-
-// class CategoryController extends GetxController {
-//   final DioCategoryService dioCategoryService = DioCategoryService();
-//   var categories = <CategoriesModel>[].obs;
-//   var isLoading = true.obs;
-//   var errorMessage = ''.obs;
-
-//   @override
-//   void onInit() {
-//     fetchCategories();
-//     super.onInit();
-//   }
-
-
-//   Future<void> fetchCategories() async {
-//     try {
-//       isLoading(true);
-//       final fetchCategories = await dioCategoryService.getCategories();
-//       if (fetchCategories != null) {
-//         categories.assignAll(fetchCategories);
-//       } else {
-//         errorMessage("Fetch Qilishda muammo bor");
-//       }
-//     } catch (e) {
-//       errorMessage("Error: $e");
-//     } finally {
-//       isLoading(false);
-//     }
-//   }
-
-// }
-
 import 'package:get/get.dart';
 
 import '../models/categories_model.dart';
@@ -78,11 +42,11 @@ class CategoryController extends GetxController {
         .toList();
   }
 
-  // Add a new category
-  /* Future<void> addCategory(CategoriesModel category) async {
+  Future<void> addCategory(String name) async {
     try {
       isLoading(true);
-      final result = await dioCategoryService.addCategory(category);
+      final result = await dioCategoryService.addCategories(name);
+      fetchCategories();
       if (result != null) {
         categories.add(result);
       } else {
@@ -93,42 +57,18 @@ class CategoryController extends GetxController {
     } finally {
       isLoading(false);
     }
-  } */
+  }
 
-  // Update an existing category
-  /* Future<void> updateCategory(CategoriesModel category) async {
+  Future<void> deleteCategory(String id) async {
     try {
       isLoading(true);
-      final result = await dioCategoryService.updateCategory(category);
-      if (result != null) {
-        final index = categories.indexWhere((cat) => cat.id == category.id);
-        if (index != -1) {
-          categories[index] = result;
-        }
-      } else {
-        errorMessage("Category yangilashda muammo bor");
-      }
+      await dioCategoryService.deleteCategories(id);
+      fetchCategories();
+      
     } catch (e) {
       errorMessage("Error: $e");
     } finally {
       isLoading(false);
     }
-  } */
-
-  // Delete a category
-  /* Future<void> deleteCategory(String id) async {
-    try {
-      isLoading(true);
-      final success = await dioCategoryService.deleteCategory(id);
-      if (success) {
-        categories.removeWhere((cat) => cat.id == id);
-      } else {
-        errorMessage("Category o'chirishda muammo bor");
-      }
-    } catch (e) {
-      errorMessage("Error: $e");
-    } finally {
-      isLoading(false);
-    }
-  } */
+  }
 }

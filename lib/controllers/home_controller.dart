@@ -1,11 +1,9 @@
 import 'package:get/get.dart';
 import 'package:read_pdf/models/books_model.dart';
-import 'package:read_pdf/models/categories_model.dart';
-import 'package:read_pdf/services/dio_category_service.dart';
 import '../../services/dio_book_service.dart';
 
 class HomeController extends GetxController {
-  final DioBookService dioBookService = DioBookService();
+  DioBookService dioBookService = DioBookService();
 
   var books = <BooksModel>[].obs;
   var isLoading = true.obs;
@@ -37,10 +35,41 @@ class HomeController extends GetxController {
     try {
       isLoading(true);
       final res = await dioBookService.addProduct(books);
+      fetchBooks();
 
       print(res);
     } catch (e) {
       errorMessage('Error: $e');
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Future<void> updateBooks(String id, BooksModel books) async {
+    try {
+      isLoading(true);
+
+      final res = await dioBookService.updateBooks(id, books);
+      fetchBooks();
+
+      print(res);
+    } catch (e) {
+      errorMessage("Upadate Error: $e");
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Future<void> deleteBooks(String id) async {
+    try {
+      isLoading(true);
+
+      final res = await dioBookService.deleteBooks(id);
+      fetchBooks();
+
+      print(res);
+    } catch (e) {
+      errorMessage("Delete Error: $e");
     } finally {
       isLoading(false);
     }

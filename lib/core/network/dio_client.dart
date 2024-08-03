@@ -43,4 +43,28 @@ class DioClient {
       rethrow;
     }
   }
+
+  Future<Response> update({
+    required String url,
+    Map<String, dynamic>? data,
+  }) async {
+    try {
+      final response = await _dio.patch(url, data: data);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Response> delete({
+    required String url,
+    Map<String, dynamic>? data,
+  }) async {
+    try {
+      final response = await _dio.delete(url, data: data);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

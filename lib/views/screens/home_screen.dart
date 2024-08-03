@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
-import 'package:read_pdf/controllers/category_controller.dart';
-import 'package:read_pdf/controllers/home_controller.dart';
-import 'package:read_pdf/services/dio_category_service.dart';
 import 'package:read_pdf/views/widgets/categories_container_section.dart';
 import 'package:read_pdf/views/widgets/categories_section.dart';
 import '../../utils/app_theme.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class BuildTextFormField extends StatelessWidget {
   final TextEditingController controller;
@@ -14,10 +15,18 @@ class BuildTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(labelText: label),
-      validator: validator,
+    return Column(
+      children: [
+        TextFormField(
+          controller: controller,
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            labelText: label,
+          ),
+          validator: validator,
+        ),
+        const Gap(10),
+      ],
     );
   }
 }

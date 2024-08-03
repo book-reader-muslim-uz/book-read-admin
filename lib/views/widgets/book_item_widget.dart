@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:read_pdf/controllers/home_controller.dart';
 import 'package:read_pdf/models/books_model.dart';
 import 'package:read_pdf/utils/app_theme.dart';
 import 'package:gap/gap.dart';
+
+import 'add_book_dialog.dart';
 
 class BookItemWidget extends StatelessWidget {
   final BooksModel book;
@@ -9,6 +13,7 @@ class BookItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final booksController = Get.find<HomeController>();
     return Container(
       width: 250,
       decoration: BoxDecoration(
@@ -93,7 +98,18 @@ class BookItemWidget extends StatelessWidget {
                             color: AppColors.primaryColor.withOpacity(0.2),
                           ),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (context) {
+                                  return AddBookDialog(
+                                    isEdit: true,
+                                    id: book.id,
+                                  );
+                                },
+                              );
+                            },
                             icon: const Icon(
                               Icons.edit,
                               color: AppColors.primaryColor,
@@ -101,6 +117,7 @@ class BookItemWidget extends StatelessWidget {
                           ),
                         ),
                         const Gap(10),
+                        //? Delete button
                         Container(
                           height: 40,
                           width: 40,
@@ -109,7 +126,33 @@ class BookItemWidget extends StatelessWidget {
                             color: AppColors.redColor.withOpacity(0.2),
                           ),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      "\"${book.title}\" Nomli kitobni O'chirishga ishonchingiz komilmi ?",
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          booksController.deleteBooks(book.id);
+                                          Get.back();
+                                        },
+                                        child: const Text("Ok"),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                        child: const Text("Cancel"),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
                             icon: const Icon(
                               Icons.delete,
                               color: AppColors.redColor,

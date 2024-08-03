@@ -1,5 +1,5 @@
 class BooksModel {
-  final String id;
+  String id;
   final String title;
   final String author;
   final String description;
@@ -37,7 +37,6 @@ class BooksModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       'title': title,
       'author': author,
       'description': description,

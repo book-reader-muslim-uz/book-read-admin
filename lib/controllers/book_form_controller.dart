@@ -1,5 +1,3 @@
-// controllers/add_book_controller.dart
-
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +34,7 @@ class AddBookController extends GetxController {
   RxDouble uploadProgress = 0.0.obs;
   RxString? fileName = ''.obs;
   RxString? fileSize = ''.obs;
+  bool isPdfUrl = false;
 
   @override
   void onInit() {
@@ -101,6 +100,12 @@ class AddBookController extends GetxController {
       final urlDownload = await snapshot.ref.getDownloadURL();
 
       pdfUrlController.text = urlDownload;
+      print(pdfUrlController.text);
+      if (pdfUrlController.text.isEmpty) {
+        isPdfUrl = false;
+      } else {
+        isPdfUrl = true;
+      }
       uploadTask.value = null;
     } catch (e) {
       print("ERROR: $e");
@@ -109,20 +114,77 @@ class AddBookController extends GetxController {
 
   void submitForm() {
     if (formKey.currentState!.validate()) {
-      final book = BooksModel(
-        id: UniqueKey().toString(),
-        title: titleController.text,
-        author: authorController.text,
-        description: descriptionController.text,
-        pdfUrl: pdfUrlController.text,
-        coverImageUrl: coverImageUrlController.text,
-        publishedDate: publishedDateController.text,
-        genre: categoriesController.text,
-        categoryId: categoryId.value,
-      );
+      if (pdfUrlController.text.isNotEmpty) {
+        final book = BooksModel(
+          id: UniqueKey().toString(),
+          title: titleController.text,
+          author: authorController.text,
+          description: descriptionController.text,
+          pdfUrl: pdfUrlController.text,
+          coverImageUrl: coverImageUrlController.text,
+          publishedDate: publishedDateController.text,
+          genre: categoriesController.text,
+          categoryId: categoryId.value,
+        );
 
-      homeController.addBooks(book);
-      Get.back();
+        homeController.addBooks(book);
+
+        titleController.clear();
+        authorController.clear();
+        descriptionController.clear();
+        pdfUrlController.clear();
+        coverImageUrlController.clear();
+        publishedDateController.clear();
+        categoriesController.clear();
+        categoryId.value = '';
+        genre.value = '';
+        isPdfUrl = false;
+        uploadProgress.value = 0.0;
+        pickedFiles.value = null;
+        categorySearchQuery.value = '';
+
+        Get.back();
+      } else {
+        print("Pdf url kelmadi");
+      }
+    }
+  }
+
+  void editSubmitForm(String id) {
+    if (formKey.currentState!.validate()) {
+      if (pdfUrlController.text.isNotEmpty) {
+        final book = BooksModel(
+          id: UniqueKey().toString(),
+          title: titleController.text,
+          author: authorController.text,
+          description: descriptionController.text,
+          pdfUrl: pdfUrlController.text,
+          coverImageUrl: coverImageUrlController.text,
+          publishedDate: publishedDateController.text,
+          genre: categoriesController.text,
+          categoryId: categoryId.value,
+        );
+
+        homeController.updateBooks(id, book);
+
+        titleController.clear();
+        authorController.clear();
+        descriptionController.clear();
+        pdfUrlController.clear();
+        coverImageUrlController.clear();
+        publishedDateController.clear();
+        categoriesController.clear();
+        categoryId.value = '';
+        genre.value = '';
+        isPdfUrl = false;
+        uploadProgress.value = 0.0;
+        pickedFiles.value = null;
+        categorySearchQuery.value = '';
+
+        Get.back();
+      } else {
+        print("Pdf url kelmadi");
+      }
     }
   }
 }

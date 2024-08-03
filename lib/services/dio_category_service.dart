@@ -63,12 +63,21 @@ class DioCategoryService {
       rethrow;
     }
   }
+
+  Future<Response> deleteCategories(String id) async {
+    try {
+      final response = await _dioClient.delete(url: "/categories/$id.json");
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
 
-void main(List<String> args) async {
-  DioCategoryService dioCategoryService = DioCategoryService();
-  final res = await dioCategoryService.addCategories("Abdulloh");
+// void main(List<String> args) async {
+//   DioCategoryService dioCategoryService = DioCategoryService();
+//   final res = await dioCategoryService.addCategories("Abdulloh");
 
-  print(res.name);
-  print(res.categoryId);
-}
+//   print(res.name);
+//   print(res.categoryId);
+// }

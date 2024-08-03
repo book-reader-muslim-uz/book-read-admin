@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:read_pdf/utils/app_theme.dart';
+import 'package:read_pdf/views/widgets/diolog_widgets/dialog_button.dart';
 
 import '../../controllers/book_form_controller.dart';
 import 'diolog_widgets/category_form_field.dart';
 import 'diolog_widgets/file_upload_section.dart';
 import 'diolog_widgets/text_form_fields.dart';
 
-class AddBookDialog extends StatelessWidget {
+class AddBookDialog extends StatefulWidget {
+  final bool isEdit;
+  final String? id;
+
+  const AddBookDialog({
+    super.key,
+    required this.isEdit,
+    this.id,
+  });
+
+  @override
+  State<AddBookDialog> createState() => _AddBookDialogState();
+}
+
+class _AddBookDialogState extends State<AddBookDialog> {
   final AddBookController controller = Get.put(AddBookController());
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Add Book'),
+      title: widget.isEdit ? const Text("Edit Book") : const Text('Add Book'),
       content: SizedBox(
         width: MediaQuery.of(context).size.width / 5,
         child: SingleChildScrollView(
@@ -46,7 +63,6 @@ class AddBookDialog extends StatelessWidget {
                   validator: (value) =>
                       value!.isEmpty ? 'Please enter a published date' : null,
                 ),
-
                 const CategoryFormField(),
                 BuildTextFormField(
                   controller: controller.coverImageUrlController,
@@ -59,23 +75,37 @@ class AddBookDialog extends StatelessWidget {
                     return null;
                   },
                 ),
-                const SizedBox(height: 16.0),
-                const FileUploadSection()
+                const Gap(16.0),
+                const FileUploadSection(),
+                const Gap(20.0),
+                Row(
+                  children: [
+                    DialogButton(
+                      text: "Cancel",
+                      onTap: () => Get.back(),
+                      color: AppColors.primaryColor.withOpacity(0.2),
+                      textColor: AppColors.primaryColor,
+                      isPaddingSize: true,
+                    ),
+                    const Gap(AppSize.defaultPadding),
+                    DialogButton(
+                      text: "Submit",
+                      onTap: () {
+                        widget.isEdit
+                            ? controller.editSubmitForm(widget.id!)
+                            : controller.submitForm();
+                      },
+                      color: AppColors.primaryColor,
+                      textColor: Colors.white,
+                      isPaddingSize: true,
+                    ),
+                  ],
+                )
               ],
             ),
           ),
         ),
       ),
-      actions: [
-        TextButton(
-          onPressed: () => Get.back(),
-          child: const Text('Cancel'),
-        ),
-        ElevatedButton(
-          onPressed: controller.submitForm,
-          child: const Text('Submit'),
-        ),
-      ],
     );
   }
 }

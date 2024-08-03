@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:read_pdf/controllers/category_form_controller.dart';
+import 'package:read_pdf/views/widgets/diolog_widgets/category_dialog_form.dart';
 
 import '../../controllers/category_controller.dart';
 import '../../utils/app_theme.dart';
@@ -13,6 +15,7 @@ class CategoriesSection extends StatefulWidget {
 
 class _CategoriesSectionState extends State<CategoriesSection> {
   final CategoryController categoryController = Get.put(CategoryController());
+  final categoryFormController = Get.put(CategoryFormController());
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,16 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return CategoryDialogForm(
+                          categoryFormController: categoryFormController,
+                        );
+                      },
+                    );
+                  },
                   icon: const Icon(
                     Icons.add,
                     size: 25,
@@ -107,7 +119,10 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                                 color: AppColors.redColor.withOpacity(0.2),
                               ),
                               child: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  categoryController
+                                      .deleteCategory(category.id);
+                                },
                                 icon: const Icon(
                                   Icons.delete,
                                   size: 20,

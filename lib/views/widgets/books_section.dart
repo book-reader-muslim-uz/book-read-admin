@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:read_pdf/utils/app_theme.dart';
 import 'package:read_pdf/views/widgets/add_book_dialog.dart';
@@ -37,10 +36,12 @@ class _TestColumnState extends State<BooksSection> {
             IconButton(
               onPressed: () {
                 showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AddBookDialog();
-                    });
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (context) {
+                    return const AddBookDialog(isEdit: false,);
+                  },
+                );
               },
               icon: const Icon(
                 Icons.add,
